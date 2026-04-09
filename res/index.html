@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THULASITA RESTRO | Modern Indian Fine Dining</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --text-cream: #f9f6f0;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-cream);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; padding: 25px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 15px 8%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .logo { font-size: 1.6rem; color: var(--primary-gold); text-decoration: none; letter-spacing: 3px; font-weight: bold; }
+
+        .nav-links { display: flex; list-style: none; gap: 35px; }
+        .nav-links a { text-decoration: none; color: var(--text-cream); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=2000') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+
+        .hero h1 { font-size: clamp(3rem, 10vw, 5.5rem); margin-bottom: 15px; color: #fff; line-height: 1.1; }
+        .hero p { color: var(--primary-gold); text-transform: uppercase; letter-spacing: 5px; font-weight: 600; font-size: 0.9rem; }
+
+        .btn-gold {
+            padding: 18px 45px; background: transparent; border: 1px solid var(--primary-gold);
+            color: var(--primary-gold); text-decoration: none; text-transform: uppercase;
+            font-weight: 600; letter-spacing: 3px; transition: var(--transition);
+            margin-top: 30px; display: inline-block; cursor: pointer;
+        }
+
+        .btn-gold:hover { background: var(--primary-gold); color: black; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+
+        section { padding: 100px 8%; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 3.2rem; color: var(--primary-gold); }
+        .section-title p { color: var(--primary-gold); letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px;}
+
+        /* --- Menu Section --- */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .menu-card {
+            background: var(--glass-bg); border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 4px; overflow: hidden; transition: var(--transition);
+        }
+        .menu-card:hover { border-color: var(--primary-gold); background: rgba(212, 175, 55, 0.05); transform: translateY(-10px); }
+        .menu-img-wrapper { height: 280px; overflow: hidden; }
+        .menu-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s ease; }
+        .menu-card:hover .menu-img { transform: scale(1.1); }
+        .menu-info { padding: 30px; text-align: center; }
+        .price { color: var(--primary-gold); font-size: 1.2rem; display: block; margin-top: 15px; font-weight: 600; }
+
+        /* --- Gallery --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .gallery-item { height: 300px; overflow: hidden; border-radius: 4px; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; filter: brightness(0.7); }
+        .gallery-item:hover img { filter: brightness(1); transform: scale(1.1); }
+
+        /* --- NEW WhatsApp Booking Container --- */
+        .booking-container { 
+            max-width: 1000px; margin: 0 auto; display: grid; 
+            grid-template-columns: 1fr 1.2fr; gap: 40px; 
+            background: #111; padding: 40px; border: 1px solid var(--primary-gold); border-radius: 8px; 
+        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; color: var(--primary-gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        input, select, textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 4px; outline: none; font-family: 'Poppins'; }
+        input:focus { border-color: var(--primary-gold); }
+
+        .btn-book { width: 100%; padding: 15px; background: var(--primary-gold); color: #000; border: none; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; letter-spacing: 1px; }
+        .btn-book:hover { background: #fff; box-shadow: 0 0 20px var(--primary-gold); }
+
+        .info-panel h2 { color: var(--primary-gold); margin-bottom: 20px; font-size: 2.5rem; }
+        .info-panel p { opacity: 0.8; line-height: 1.8; margin-bottom: 20px; }
+
+        /* --- Footer --- */
+        footer { padding: 80px 8% 40px; background: #050505; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        .social-links { margin: 30px 0; }
+        .social-links a { color: var(--text-cream); font-size: 1.3rem; margin: 0 15px; transition: 0.3s; }
+        .social-links a:hover { color: var(--primary-gold); }
+
+        @media (max-width: 992px) { .booking-container { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">THULASITA RESTRO</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reservation">Booking</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <p data-aos="fade-up">2026 | INDORE MADHYA PRADESH</p>
+        <h1 data-aos="fade-up" data-aos-delay="200">The Soul of<br>Indian Cuisine</h1>
+        <a href="#reservation" class="btn-gold" data-aos="zoom-in" data-aos-delay="400">Book A Table</a>
+    </section>
+
+    <section id="menu">
+        <div class="section-title" data-aos="fade-up">
+            <p>Authentic Flavors</p>
+            <h2>Our Signature Menu</h2>
+        </div>
+
+        <h3 style="color: #4CAF50; font-size: 2rem; margin-bottom: 30px; border-left: 5px solid #4CAF50; padding-left: 15px;">Pure Vegetarian Selection</h3>
+        <div class="menu-grid" style="margin-bottom: 80px;">
+            <div class="menu-card" data-aos="fade-up">
+                <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1694849789325-914b71ab4075?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Butter Masala Dosa <span class="price">₹180</span></h3>
+                    <p>Crispy rice crepe filled with spiced potato mash & pure butter.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwZm9vZCUyMGlkbGl8ZW58MHx8MHx8fDA%3D0" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Steamed Idli (2 Pcs) <span class="price">₹120</span></h3>
+                    <p>Fluffy rice cakes served with sambar and coconut chutney.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="menu-img-wrapper"><img src="https://media.istockphoto.com/id/1292438529/photo/traditional-hyderabadi-chicken-dum-biryani-made-of-basmati-rice-cooked-with-masala-spices.webp?a=1&b=1&s=612x612&w=0&k=20&c=W4shZBpF5W7ta5SboYTBFpRiRODHn12FW71M13tBbnc=" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Hyderabadi Veg Biryani <span class="price">₹350</span></h3>
+                    <p>Aromatic basmati rice cooked with garden-fresh vegetables.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up">
+                <div class="menu-img-wrapper"><img src="https://media.istockphoto.com/id/1072951288/photo/indian-chilli-chicken-dry-served-in-a-plate-over-moody-background-selective-focus.jpg?s=1024x1024&w=is&k=20&c=1L2qQx5xfRf18pxLy6ebrob4QpbODCSevlXSL4-Ka5E=" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Veg Manchurian Dry <span class="price">₹220</span></h3>
+                    <p>Fried veggie balls tossed in spicy soy-garlic sauce.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&q=80&w=800" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Hakka Noodles Veg <span class="price">₹250</span></h3>
+                    <p>Stir-fried noodles with crunchy bell peppers and spring onions.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&q=80&w=800" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Veg Fried Rice <span class="price">₹240</span></h3>
+                    <p>Wok-tossed rice with fine-chopped veggies and spices.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color: #FF5252; font-size: 2rem; margin-bottom: 30px; border-left: 5px solid #FF5252; padding-left: 15px;">Royal Non-Vegetarian Feast</h3>
+        <div class="menu-grid">
+            <div class="menu-card" data-aos="fade-up">
+                <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&q=80&w=800" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Chicken Dum Biryani <span class="price">₹450</span></h3>
+                    <p>Traditional Hyderabadi style slow-cooked chicken & rice.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="menu-img-wrapper"><img src="https://images.unsplash.com/photo-1710091691771-96b2e6d17dac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aW5kaWFuJTIwZm9vZCUyMGNoaWNrZW4lMjB0YXdhJTIwbWFzYWxhfGVufDB8fDB8fHww" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Chicken Tawa Masala <span class="price">₹380</span></h3>
+                    <p>Spicy chicken pieces cooked on a flat tawa with thick gravy.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="menu-img-wrapper"><img src="https://tse2.mm.bing.net/th/id/OIP.jeClu9M2lrWNTGCMXvGvmgHaEK?pid=Api&P=0&h=180" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Chicken Handi <span class="price">₹420</span></h3>
+                    <p>Rich and creamy gravy cooked in a traditional clay handi.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up">
+                <div class="menu-img-wrapper"><img src="https://media.istockphoto.com/id/1175203912/photo/roasted-chicken-garnished-with-lettuce-and-carrots.jpg?s=612x612&w=is&k=20&c=efgIi4oH3YxlRZWc8Nvkpj_CISPbV-CVo8wS5fLDUyw=" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Chicken Starters (Platter) <span class="price">₹550</span></h3>
+                    <p>Assorted tandoori wings, lollipop, and malai tikka.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="menu-img-wrapper"><img src="https://media.istockphoto.com/id/1292636939/photo/chicken-noodles-a-popular-indo-chinese-dish-made-with-chicken-noodles-and-vegetables-served.jpg?s=612x612&w=0&k=20&c=EyiBsXCLT8NqEnO7NOzqoBUT9sVXigBHpmPSpaoSUfo=" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Chicken Noodles <span class="price">₹280</span></h3>
+                    <p>Authentic Chinese noodles with shredded chicken & egg.</p>
+                </div>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="menu-img-wrapper"><img src="https://media.istockphoto.com/id/1409761294/photo/top-view-of-chicken-biryani-indian-food-delicious-ramadan-iftar-meal-hyderabadi-biryani.jpg?s=612x612&w=0&k=20&c=aMfzgP724Id-QTq0cpAEwVP5SFqHZH_VhvvMuFONKdQ=" class="menu-img"></div>
+                <div class="menu-info">
+                    <h3>Chicken Fried Rice <span class="price">₹280</span></h3>
+                    <p>Smoky fried rice with tender chicken chunks and scallions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" style="background: #0d0d0d;">
+        <div class="section-title"><h2>Visual Experience</h2></div>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=600"></div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=600"></div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600"></div>
+            <div class="gallery-item" data-aos="fade-up"><img src="https://media.architecturaldigest.com/photos/57e42de0fe422b3e29b7e78f/16:9/w_960,c_limit/JW_LosCabos_2015_MainExterior.jpg"></div>
+        </div>
+    </section>
+
+    <section id="reservation">
+        <div class="booking-container" data-aos="fade-up">
+            <div class="info-panel">
+                <p style="color:var(--primary-gold); letter-spacing: 2px;">Premium Dining</p>
+                <h2>Confirm Your Seat</h2>
+                <p>Aapke reservation ki details turant aapke WhatsApp par bhej di jayengi confirmation ke liye.</p>
+                <div style="margin-top: 30px; font-size: 0.9rem;">
+                    <p><i class="fas fa-check-circle" style="color:var(--primary-gold); margin-right: 10px;"></i> Instant Confirmation</p>
+                    <p style="margin: 15px 0;"><i class="fas fa-check-circle" style="color:var(--primary-gold); margin-right: 10px;"></i> Safe & Secure</p>
+                    <p><i class="fas fa-check-circle" style="color:var(--primary-gold); margin-right: 10px;"></i> Professional Service</p>
+                </div>
+            </div>
+
+            <form id="whatsappForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" id="mobile" placeholder="10-digit number" required>
+                </div>
+                <div class="form-group">
+                    <label>Date of Visit</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Select Table/Seats</label>
+                    <select id="seats" required>
+                        <option value="">Choose Capacity</option>
+                        <option value="2 Seater (Couple)">2 Seater (Couple)</option>
+                        <option value="4 Seater (Family)">4 Seater (Family)</option>
+                        <option value="6 Seater (Group)">6 Seater (Group)</option>
+                        <option value="Private Lounge">Private Lounge</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions</label>
+                    <textarea id="instructions" rows="2" placeholder="Ex: Birthday celebration..."></textarea>
+                </div>
+                <button type="submit" class="btn-book">Confirm & Get Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <a href="#" class="logo">THULASITA RESTRO</a>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p style="opacity: 0.4; font-size: 0.7rem; margin-top: 40px;">© 2026 THULASITA India. Designed for Excellence.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+        
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            window.scrollY > 80 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+        });
+
+        // WhatsApp Logic
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            let mobile = document.getElementById('mobile').value;
+            const date = document.getElementById('date').value;
+            const seats = document.getElementById('seats').value;
+            const instructions = document.getElementById('instructions').value || "None";
+
+            mobile = mobile.replace(/\D/g, '');
+            if (mobile.length === 10) { mobile = "91" + mobile; }
+
+            const text = 
+                `*RESERVATION SUCCESSFUL - THULASITA RESTRO*%0A` +
+                `------------------------------------%0A` +
+                `*Namaste ${name}!*%0A` +
+                `Aapki table booking request receive ho gayi hai.%0A%0A` +
+                `*ORDER DETAILS:*%0A` +
+                `📍 *Seat:* ${seats}%0A` +
+                `📅 *Date:* ${date}%0A` +
+                `👤 *Booked by:* ${name}%0A` +
+                `💬 *Special Request:* ${instructions}%0A%0A` +
+                `*Status:* Success (Verification Pending)%0A` +
+                `------------------------------------%0A` +
+                `_Hum jald hi aapko call karenge. Shukriya!_`;
+
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${mobile}&text=${text}`;
+            alert('Namaste ' + name + '! Redirecting you to WhatsApp for confirmation.');
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
